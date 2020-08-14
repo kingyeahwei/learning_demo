@@ -1,0 +1,21 @@
+const Man = function () {
+    this.run = function () {
+        console.log('跑步')
+    }
+}
+
+const Decorator = function (old) {
+    this.oldAbility = old.run
+    this.fly = function () {
+        console.log('具备飞行的能力')
+    }
+    this.newAbility = function () {
+        this.oldAbility()
+        this.fly()
+    }
+}
+
+const man = new Man()
+const superMan = new Decorator(man)
+superMan.fly()
+
