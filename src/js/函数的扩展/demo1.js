@@ -368,4 +368,257 @@
 //
 // console.log(headAndTail(1, 2, 3, 4, 5));
 
-// warn
+// var handler = {
+//   id: '123456',
+//   init: function() {
+//     document.addEventListener('click', event => {
+//       this.doSomething(event.type), false
+//     })
+//   },
+//   doSomething: function(type) {
+//     console.log('Handling' + type + 'for' + this.id);
+//   }
+// }
+
+// es6
+// function foo() {
+//   setTimeout(() => {
+//     console.log('id:' + this.id);
+//   }, 100);
+// }
+
+// // es5
+// function foo() {
+//   var _this = this;
+//   setTimeout(() => {
+//     console.log('id:' + _this.id);
+//   }, 100);
+// }
+
+// function foo() {
+//   return () => {
+//     return () => {
+//       return () => {
+//         console.log('id:' + this.id);
+//       }
+//     }
+//   }
+// }
+
+// var f = foo.call({id: 1});
+// f.call({id: 2})()()
+// f().call({id: 3})()
+// f()().call({id: 4})
+
+// let arr = (function() {
+//   return [
+//     (() => this.x).bind({x: 'inner'})()
+//   ];
+// }).call({x: 'outer'})
+
+// const cat = {
+//   lives: 9,
+//   jumps: function() {
+//     console.log(this.lives);
+//   }
+// }
+// cat.jumps()
+
+// var button = document.getElementById('press')
+// button.addEventListener('click', function () {
+//   console.log(this);
+//   this.classList.toggle('on')
+// })
+
+// function insert(value) {
+//   return {
+//     into: function (array) {
+//       return {
+//         after: function (afterValue) {
+//           array.splice(array.indexOf(afterValue) + 1, 0, value);
+//           return array;
+//         },
+//       };
+//     },
+//   };
+// }
+
+// console.log(insert(2).into([1, 3]).after(1));
+
+// let insert = (value) => ({
+//   into: (array) => ({
+//     after: (afterValue) => {
+//       array.splice(array.indexOf(afterValue) + 1, 0, value);
+//       return array;
+//     },
+//   }),
+// });
+
+// console.log(insert(2).into([1, 3]).after(1));
+
+// const pipeline = (...funcs) => {
+//   return (val) =>
+//     funcs.reduce((a, b) => {
+//       return b(a);
+//     }, val);
+// };
+
+// const plus1 = (a) => a + 1;
+// const mult2 = (a) => a * 2;
+
+// const addThenMult = pipeline(plus1, mult2);
+// console.log(addThenMult(5));
+
+// const plus1 = a => a + 1;
+// const mult2 = a => a * 2;
+
+// console.log(mult2(plus1(5)))
+
+// function factorial(n, total) {
+//   if (n === 1) {
+//     return total
+//   }
+//   return factorial(n - 1, n * total)
+// }
+
+// console.log(factorial(5, 1))
+
+// function Fibonacci(n) {
+//   if (n <= 1) {
+//     return 1;
+//   }
+//   return Fibonacci(n - 1) + Fibonacci(n - 2);
+// }
+
+// function Fibonacci2 (n, ac1 = 1, ac2 = 1) {
+//   if (n <= 1) {
+//     return ac2
+//   }
+//   return Fibonacci2(n - 1, ac2, ac1 + ac2)
+// }
+
+// console.log(Fibonacci2(100))
+// console.log(Fibonacci2(1000));
+// console.log(Fibonacci2(10000));
+
+// function tailFactorial(n, total) {
+//   if (n === 1) {
+//     return total;
+//   }
+//   return tailFactorial(n - 1, n * total);
+// }
+
+// function factorial(n) {
+//   return tailFactorial(n, 1);
+// }
+
+// factorial(5);
+
+// function currying(fn, n) {
+//   return function (m) {
+//     return fn.call(this, m, n);
+//   };
+// }
+
+// function tailFactorial(n, total) {
+//   if (n === 1) return total;
+//   return tailFactorial(n - 1, n * total);
+// }
+
+// const factorial = currying(tailFactorial, 1);
+
+// factorial(5)
+
+// function factorial(n, total = 1) {
+//   if (n === 1) {
+//     return total
+//   }
+//   return factorial(n - 1, n * total)
+// }
+
+// factorial(5)
+// console.log('factorial(5): ', factorial(5));
+
+// 严格模式下不能使用argument 和caller
+// function restricted() {
+//   'use strict'
+//   restricted.caller.log
+//   restricted.arguments
+// }
+
+// restricted()
+
+// function sum (x, y) {
+//   if (y > 0) {
+//     return sum(x + 1, y - 1)
+//   } else {
+//     return x;
+//   }
+// }
+
+// sum(1, 100000)
+
+// function trampoline(f) {
+//   while (f && f instanceof Function) {
+//     f = f()
+//   }
+//   return f
+// }
+
+// function sum(x, y) {
+//   if(y > 0) {
+//     return sum.bind(null, x + 1, y -1);
+//   } else {
+//     return x;
+//   }
+// }
+
+// console.log(sum(1, 100000));
+
+// function tco(f) {
+//   var value;
+//   var active = false;
+//   var accumulated = [];
+
+//   return function accumulator() {
+//     accumulated.push(arguments);
+//     if (!active) {
+//       active = true;
+//       console.log(accumulated.length);
+//       while (accumulated.length) {
+//         console.log(this);
+//         value = f.apply(this, accumulated.shift());
+//       }
+//       active = false;
+//       return value;
+//     }
+//   };
+// }
+
+// var sum = tco(function(x, y) {
+//   if (y > 0) {
+//     return sum(x + 1, y - 1)
+//   }
+//   else {
+//     return x
+//   }
+// });
+
+
+// sum(1, 100000)
+
+// function clownsEverywhere(param1, param2,) {
+
+// }
+
+// clownsEverywhere('foo', 'bar',)
+
+// function /* foo comment */ foo () {}
+
+// console.log('foo.toString: ', foo.toString());
+
+// try {
+
+// } catch {
+
+// }
