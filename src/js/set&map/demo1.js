@@ -123,3 +123,115 @@
 // set = new Set(Array.from(set, val => val * 2))
 // console.log(set);
 
+// note weakset
+// const ws = new WeakSet();
+// ws.add(1)
+// ws.add(Symbol())
+// const a = [[1, 2], [3, 4]];
+// const ws = new WeakSet(a)
+// console.log(ws);
+
+// const b = [3, 4];
+// const ws = new WeakSet(b)
+
+// const ws = new WeakSet()
+// const obj = {}
+// const foo = {}
+// ws.add(window)
+// ws.add(obj)
+// console.log(ws.has(window));
+// console.log(ws.has(foo));
+// ws.delete(window)
+// console.log(ws.has(window));
+
+// const ws = new WeakSet()
+// ws.add({})
+// ws.add({})
+// console.log(ws.size);
+// console.log(ws.forEach);
+// ws.forEach(function(item) {console.log('weakSet has' + item);})
+
+// const foos = new WeakSet()
+// class Foo {
+//   constructor() {
+//     foos.add(this)
+//   }
+//   method() {
+//     if(!foos.has(this)) {
+//       throw new TypeError('Foo.prototype.method 只能在Foo的实例上调用!')
+//     }
+//   }
+// }
+
+// note map
+// const m = new Map();
+// const o = {p: 'Hello World'};
+// m.set(o, 'content')
+// console.log(m.get(o));
+// console.log(m.has(o))
+// m.delete(o)
+// console.log(m.has(o));
+
+// const map = new Map([
+//   ['name','张三'],
+//   ['title', 'Author']
+// ])
+// console.log(map.size);
+// console.log(map.has('name'))
+// console.log(map.get('name'));
+// console.log(map.has('title'));
+// console.log(map.get('title'));
+
+// const items = [
+//   ['name', '张三'],
+//   ['title', 'Author']
+// ]
+// const map = new Map()
+// items.forEach(([key, value]) => map.set(key, value))
+
+// console.log(map);
+
+// const set = new Set([
+//   ['foo', 1],
+//   ['bar', 2]
+// ])
+// const m1 = new Map(set)
+// // console.log(m1.get('foo'));
+// const m2 = new Map([['baz', 3]])
+// const m3 = new Map(m2)
+// console.log(m3);
+
+// const map = new Map();
+// map.set(1, 'aaa').set(1, 'bbb')
+// console.log(map.get(1))
+
+// console.log(new Map().get('adfsfsdf'))
+
+// const map = new Map()
+// map.set(['a'], 555)
+// console.log(map.get(['a']));
+
+// const map = new Map()
+// const k1 = ['a'];
+// const k2 = ['a'];
+// map.set(k1, 111).set(k2, 222)
+// console.log(map.get(k1));
+// console.log(map.get(k2));
+
+// let map = new Map()
+// map.set(-0, 123)
+// console.log(map.get(+0))
+// map.set(true, 1)
+// map.set('true', 2)
+// console.log(map.get(true));
+// map.set(undefined, 3)
+// map.set(null, 4)
+// console.log(map.get(undefined));
+// map.set(NaN, 123)
+// console.log(map.get(NaN))
+
+
+
+
+
+
