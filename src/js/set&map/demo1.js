@@ -329,3 +329,137 @@
 //   this.report(key, value)
 // }, reporter)
 
+// note map转数组
+// const myMap = new Map().set(true, 7).set({foo: 3}, ['abc'])
+// console.log(...myMap);
+
+// const bb = new Map([
+//   [true, 7],
+//   [{foo: 3}, ['abc']]
+// ])
+// console.log(bb);
+
+// function strMapToObj(strMap) {
+//   let obj = Object.create(null);
+//   for (const [k, v] of strMap) {
+//     obj[k] = v;
+//   }
+//   return obj
+// }
+
+// const myMap = new Map().set('yes', true).set('no', false)
+// console.log(strMapToObj(myMap));
+
+// let obj = {'a': 1, 'b': 2}
+// let map = new Map(Object.entries(obj))
+// console.log(map);
+
+function objToStrMap(obj) {
+  let strMap = new Map();
+  for (const k of Object.keys(obj)) {
+    strMap.set(k, obj[k])
+  }
+  return strMap
+}
+// console.log(objToStrMap({yes: true, no: false}));
+
+// function strMapToJson(strMap) {
+//   return JSON.stringify(strMapToObj(strMap))
+// }
+
+// let myMap = new Map().set('yes', true).set('no', false)
+// console.log(strMapToJson(myMap))
+
+// function mapToArrayJson(map) {
+//   return JSON.stringify([...map])
+// }
+// let myMap = new Map().set(true, 7).set({foo: 3}, ['abc'])
+// console.log(mapToArrayJson(myMap));
+
+// function jsonToStrMap(jsonStr) {
+//   return objToStrMap(JSON.parse(jsonStr))
+// }
+
+// console.log(jsonToStrMap('{"yes": true, "no": false}'))
+
+// function jsonToMap(jsonStr) {
+//   return new Map(JSON.parse(jsonStr))
+// }
+// console.log(jsonToMap('[[true, 7], [{"foo": 3}, ["abc"]]]'))
+
+// note weakMap
+// const wm1 = new WeakMap();
+// const key = {foo: 1};
+// wm1.set(key, 2)
+// console.log(wm1.get(key));
+
+// const map = new WeakMap()
+// console.log(map.set(1, 2))
+
+// const k1 = [1, 2, 3]
+// const k2 = [4, 5, 6]
+// const wm2 = new WeakMap([[k1, 'foo'], [k2, 'bar']])
+// console.log(wm2);
+// console.log(wm2.get(k2) )
+
+// const map = new WeakMap();
+// map.set(1, 2)
+// map.set(Symbol(), 2)
+// map.set(null, 3)
+
+// const e1 = document.getElementById('foo')
+// const e2 = document.getElementById('bar')
+// const arr = [[e1, 'foo 元素'], [e2, 'bar 元素']]
+// arr[0] = null
+// arr[1] = null
+// console.log(arr);
+
+// const wm = new WeakMap();
+// const element = document.getElementsByTagName('div');
+// wm.set(element, 'some infomation')
+// console.log(wm.get(element));
+
+// const wm = new WeakMap();
+// let key = {};
+// let obj = {foo: 1};
+// wm.set(key, obj)
+// obj = null
+// console.log(wm.get(key));
+
+// const wm = new WeakMap();
+// console.log(wm.size)
+// console.log(wm.forEach);
+// console.log(wm.clear);
+
+// let myWeakmap = new WeakMap();
+// myWeakmap.set(document.getElementsByTagName('div'), {timesClicked: 0});
+// document.getElementsByTagName('div').addEventListener('click', function () {
+//   let logoData = myWeakmap.get(document.getElementsByTagName('div'))
+//   logoData.timesClicked++;
+// }, false)
+
+// const _counter = new WeakMap();
+// const _action = new WeakMap();
+// class Countdown {
+//   constructor(counter, action) {
+//     _counter.set(this, counter)
+//     _action.set(this, action)
+//   }
+//   dec() {
+//     let counter = _counter.get(this)
+//     if (counter < 1) {
+//       return;
+//     }
+//     counter--;
+//     _counter.set(this, counter)
+//     if (counter ===0) {
+//       _action.get(this)();
+//     }
+//   }
+// }
+
+// const c = new Countdown(2, () => {console.log('DONE');});
+// c.dec()
+// c.dec()
+
+
