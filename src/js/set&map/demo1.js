@@ -5,6 +5,7 @@
 // }
 
 
+
 // const set = new Set([1, 2, 3, 4, 4])
 // console.log([...set]);
 
@@ -230,8 +231,101 @@
 // map.set(NaN, 123)
 // console.log(map.get(NaN))
 
+// note size
+// const map = new Map();
+// map.set('foo', true);
+// map.set('bar', false);
+// console.log(map.size);
 
+// const m = new Map();
+// m.set('edition', 6);
+// m.set(262, 'standard');
+// m.set(undefined, 'nah');
+// console.log(m);
 
+// let map = new Map();
+// map.set(1, 'a')
+// .set(2, 'b')
+// .set(3, 'c')
+// console.log(map);
 
+// const m = new Map()
+// const hello = function() {console.log('hello');};
+// m.set(hello, 'Hello ES6!')
+// console.log(m.get(hello));
 
+// const m = new Map();
+// m.set('edition', 6);
+// m.set(262, 'standard');
+// m.set(undefined, 'nah');
+// console.log(m.has('edition'));
+// console.log(m.has('years'));
+// console.log(m.has(262));
+// console.log(m.has(undefined));
+
+// const m = new Map();
+// m.set(undefined, 'nah');
+// console.log(m.has(undefined))
+// m.delete(undefined)
+// console.log(m.has(undefined));
+
+// let map = new Map();
+// map.set('foo', true);
+// map.set('bar', false)
+// console.log(map.size)
+// map.clear()
+// console.log(map.size);
+
+// const map = new Map([
+//   ['F', 'no'],
+//   ['T', 'yes']
+// ])
+// for (const key of map.keys()) {
+//   console.log(key);
+// }
+// for (const value of map.values()) {
+//   console.log(value);
+// }
+// for (const item of map.entries()) {
+//   console.log(item[0], item[1]);
+// }
+
+// for (const [key, value] of map.entries()) {
+//   console.log(key, value);
+// }
+
+// for (const [key, value] of map) {
+//   console.log(key, value);
+// }
+// console.log(map[Symbol.iterator] === map.entries);
+
+// const map = new Map([
+//   [1, 'one'],
+//   [2, 'two'],
+//   [3, 'three']
+// ])
+// console.log([...map.keys()]);
+// console.log([...map.values()]);
+// console.log([...map.entries()]);
+// console.log([...map]);
+
+// const map0 = new Map().set(1, 'a').set(2, 'b').set(3, 'c')
+// const map1 = new Map([...map0].filter(([k, v]) => k < 3))
+// console.log([...map0].filter(([key, value]) => key < 3));
+// const map2 = new Map([...map0].map(([k, v]) => [k * 2, '_' + v]))
+// console.log(map2);
+
+// const map = new Map().set(1, 'a').set(2, 'b').set(3, 'c');
+// map.forEach(function(value, key, map) {
+//   console.log("Key: %s, Value: %s", key, value);
+// });
+// const map = new Map();
+// const reporter = {
+//   report: function(key, value) {
+//     console.log("Key: %s, Value: %s", key, value);
+//   }
+// }
+// map.forEach(function(value, key, map) {
+//   this.report(key, value)
+// }, reporter)
 
