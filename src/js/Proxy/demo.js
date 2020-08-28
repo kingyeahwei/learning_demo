@@ -281,12 +281,12 @@
 // const proxy = new Proxy(target, handler);
 // proxy._prop
 
-const handler = {
-  set: function(obj, key, value, receiver) {
-    obj[key] = receiver;
-  }
-}
-const proxy = new Proxy({}, handler)
-proxy.foo = 'bar'
-console.log(proxy.foo === proxy)
+// const handler = {
+//   set: function(obj, key, value, receiver) {
+//     obj[key] = receiver;
+//   }
+// }
+// const proxy = new Proxy({}, handler)
+// proxy.foo = 'bar'
+// console.log(proxy.foo === proxy)
 
