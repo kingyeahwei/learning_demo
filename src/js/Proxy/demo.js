@@ -290,3 +290,121 @@
 // proxy.foo = 'bar'
 // console.log(proxy.foo === proxy)
 
+// const handler = {
+//   set(obj, prop, value, receiver) {
+//     obj[prop] = receiver;
+//   }
+// }
+// const proxy = new Proxy({}, handler);
+// const myObj = {};
+// Object.setPrototypeOf(myObj, proxy);
+// myObj.foo = 'bar';
+// console.log(myObj.foo == myObj)
+
+// const obj = {}
+// Object.defineProperty(obj, 'foo', {
+//   value: 'bar',
+//   writable: false
+// })
+// const handler = {
+//   set: function(obj, key, value, receiver) {
+//     obj[key] = 'baz';
+//   }
+// }
+
+// const proxy = new Proxy(obj, handler);
+// proxy.foo = 'baz'
+// console.log(proxy.foo);
+
+// const handler = {
+//   set: function(obj, prop, value, receiver) {
+//     obj[prop] = receiver;
+//     return false;
+//   }
+// }
+// const proxy = new Proxy({}, handler)
+// proxy.foo = 'bar'
+
+// var handler = {
+//   has(target, key) {
+//     if (key[0] === '_') {
+//       return false;
+//     }
+//     return key in target;
+//   }
+// }
+
+// var target = {_prop: 'foo', prop: 'foo'}
+// var proxy = new Proxy(target, handler);
+// console.log('_prop' in proxy);
+
+// var obj = { a: 10 };
+// Object.preventExtensions(obj);
+// var p = new Proxy(obj, {
+//   has: function (target, prop) {
+//     return false;
+//   },
+// });
+
+// console.log('a' in p);
+
+// let stu1 = {name: '张三', score: 59};
+// let stu2 = {name: '李四', score: 99}
+
+// let handler = {
+//   has(target, prop) {
+//     if (prop === 'score' && target[prop] < 60) {
+//       console.log(`${target.name} 不及格`);
+//       return false;
+//     }
+//     return prop in target;
+//   }
+// }
+
+// let oproxy1 = new Proxy(stu1, handler)
+// let oproxy2 = new Proxy(stu2, handler)
+
+// // console.log('score' in oproxy1);
+
+// // console.log('score' in oproxy2);
+
+// for (let a in oproxy1) {
+//   console.log(oproxy1[a]);
+// }
+
+// for (let b in oproxy2) {
+//   console.log(oproxy2[b]);
+// }
+
+// var handler = {
+//   apply(target, ctx, args) {
+//     return Reflect.apply(...arguments);
+//   }
+// }
+
+// var target = function () {return 'I am the target';};
+// var handler = {
+//   apply: function() {
+//     return 'I am the proxy';
+//   }
+// }
+
+// var p = new Proxy(target, handler);
+// console.log(p())
+
+// var twice = {
+//   apply(target, ctx, args) {
+//     console.log(arguments);
+//     return Reflect.apply(...arguments) * 2;
+//   },
+// };
+
+// function sum(left, right) {
+//   return left + right;
+// }
+
+// var proxy = new Proxy(sum, twice)
+// proxy(1, 2)
+// proxy.call(null, 5, 6)
+// proxy.apply(null, [7, 8])
+// Reflect.apply(proxy, null, [4,5])
