@@ -408,3 +408,317 @@
 // proxy.call(null, 5, 6)
 // proxy.apply(null, [7, 8])
 // Reflect.apply(proxy, null, [4,5])
+
+// var handler = {
+//   construct(target, args, newTarget) {
+//     return new newTarget(...args)
+//   }
+// }
+
+// var p = new Proxy(function () {}, {
+//   construct: function(target, args) {
+//     return {value: args[0] * 10};
+//   }
+// })
+
+// console.log(new p(1).value)
+
+// var p = new Proxy(function() {}, {
+//   construct: function(target, argumentsList) {
+//     return 1;
+//   }
+// })
+
+// new p()
+
+// var handler = {
+//   deleteProperty(target, key) {
+//     invariant(key, "delete");
+//     delete target[key];
+//     return true;
+//   },
+// };
+
+// function invariant(key, action) {
+//   if (key[0] === "_") {
+//     throw new Error(`Invalid attempt to ${action} private "${key}" property`);
+//   }
+// }
+
+// var target = { _prop: "foo" };
+// var proxy = new Proxy(target, handler);
+
+// delete proxy._prop;
+
+// var handler = {
+//   defineProperty(target, key, descriptor) {
+//     return false
+//   }
+// }
+
+// var target = {};
+// var proxy = new Proxy(target, handler);
+// proxy.foo = 'bar'
+// console.log(proxy);
+
+// var handler = {
+//   getOwnPropertyDescriptor(target, key) {
+//     if (key[0] === "_") {
+//       return;
+//     }
+//     return Object.getOwnPropertyDescriptor(target, key);
+//   },
+// };
+
+// var target = { _foo: "bar", baz: "tar" };
+// var proxy = new Proxy(target, handler);
+// console.log(Object.getOwnPropertyDescriptor(proxy, '_foo'))
+// console.log(Object.getOwnPropertyDescriptor(proxy, 'want'));
+// console.log(Object.getOwnPropertyDescriptor(proxy, 'baz'));
+
+// var proto = {}
+// var p = new Proxy({}, {
+//   getPrototypeOf(target) {
+//     return proto;
+//   }
+// })
+
+// console.log(Object.getPrototypeOf(p) === proto)
+
+// var p = new Proxy({}, {
+//   isExtensible: function(target) {
+//     console.log('called');
+//     return true;
+//   }
+// })
+// console.log(Object.isExtensible(p))
+
+// var p = new Proxy({}, {
+//   isExtensible(target) {
+//     return false;
+//   }
+// })
+
+// Object.isExtensible(p)
+
+// let target = {
+//   a: 1,
+//   b: 2,
+//   c: 3,
+// };
+
+// let handler = {
+//   ownKeys(target) {
+//     return ["a"];
+//   },
+// };
+
+// let proxy = new Proxy(target, handler)
+// console.log(Object.keys(proxy))
+
+// let target = {
+//   _bar: "foo",
+//   _prop: "bar",
+//   prop: "baz",
+// };
+
+// let handler = {
+//   ownKeys(target) {
+//     return Reflect.ownKeys(target).filter((key) => key[0] !== "_");
+//   },
+// };
+
+// let proxy = new Proxy(target, handler);
+// for (const key of Object.keys(proxy)) {
+//   console.log(target[key]);
+// }
+
+// let target = {
+//   a: 1,
+//   b: 2,
+//   c: 3,
+//   [Symbol.for('secret')]: '4'
+// }
+
+// Object.defineProperty(target, 'key', {
+//   enumerable: false,
+//   configurable: true,
+//   writable: true,
+//   value: 'static'
+// })
+
+// let handler = {
+//   ownKeys(target) {
+//     return ['a', 'd', Symbol.for('secret'), 'key']
+//   }
+// }
+
+// let proxy = new Proxy(target, handler)
+// console.log(Object.keys(proxy))
+
+// var p = new Proxy({}, {
+//   ownKeys: function(target) {
+//     return ['a', 'b', 'c'];
+//   }
+// })
+
+// console.log(Object.getOwnPropertyNames(p))
+
+// const obj = { hello: "world" };
+// const proxy = new Proxy(obj, {
+//   ownKeys(target) {
+//     return ["a", "b"];
+//   },
+// });
+
+// for (const key in proxy) {
+//   console.log(key);
+// }
+
+// var obj = {}
+
+// var p = new  Proxy(obj, {
+//   ownKeys(target) {
+//     return [123, true, undefined, null, {}, []];
+//   }
+// })
+
+// console.log(Object.getOwnPropertyNames(p))
+
+// var obj = {};
+// Object.defineProperty(obj, "a", {
+//   configurable: false,
+//   enumerable: true,
+//   value: 10,
+// });
+
+// var p = new Proxy(obj, {
+//   ownKeys(target) {
+//     return ['b']
+//   }
+// })
+
+// Object.getOwnPropertyNames(p)
+
+// var obj = {a: 1}
+// Object.preventExtensions(obj)
+
+// var p = new Proxy(obj, {
+//   ownKeys(target) {
+//     return ['a', 'b']
+//   }
+// })
+
+// Object.getOwnPropertyNames(p)
+
+// var proxy = new Proxy(
+//   {},
+//   {
+//     preventExtensions: function (target) {
+//       return true;
+//     },
+//   }
+// );
+// Object.preventExtensions(proxy)
+
+// var proxy = new Proxy(
+//   {},
+//   {
+//     preventExtensions(target) {
+//       console.log("called");
+//       Object.preventExtensions(target);
+//       return true;
+//     },
+//   }
+// );
+// console.log(Object.preventExtensions(proxy));
+
+// var handler = {
+//   setPrototypeOf(target, proto) {
+//     throw new Error("changing the prototype is forbidden");
+//   },
+// };
+
+// var proto = {};
+// var target = function () {};
+// var proxy = new Proxy(target, handler);
+
+// Object.setPrototypeOf(proxy, proto)
+
+// note Proxy.revocable()
+
+// let target = {}
+// let handler = {}
+// let {proxy, revoke} = Proxy.revocable(target, handler);
+// proxy.foo = 123
+// console.log(proxy.foo);
+// revoke()
+// console.log(proxy.foo);
+
+// note this问题
+
+// const target = {
+//   m: function () {
+//     console.log(this === proxy);
+//   }
+// }
+
+// const handler = {}
+
+// const proxy = new Proxy(target, handler);
+
+// target.m()
+
+// proxy.m()
+
+// const _name = new WeakMap();
+
+// class Person {
+//   constructor(name) {
+//     _name.set(this, name)
+//   }
+//   get name() {
+//     return _name.get(this)
+//   }
+// }
+
+// const jane = new Person('Jane');
+// console.log(jane.name)
+
+// const proxy = new Proxy(jane, {})
+// console.log(proxy.name);
+
+// const target = new Date()
+
+// const handler = {};
+
+// const proxy = new Proxy(target, handler);
+
+// proxy.getDate()
+
+// const target = new Date('2015-01-01');
+// const handler = {
+//   get(target, prop) {
+//     if (prop === 'getDate') {
+//       return target.getDate.bind(target)
+//     }
+//     return Reflect.get(target, prop)
+//   }
+// }
+
+// const proxy = new Proxy(target, handler)
+
+// console.log(proxy.getDate())
+
+// const service = createWebService("http://example.com/data");
+// service.employees().then((json) => {
+//   const employees = JSON.parse(json);
+// });
+
+// function createWebService(baseUrl) {
+//   return new Proxy({}, {
+//     get(target, propKey, receiver) {
+//       return () => {httpGet(baseUrl + '/' + propKey)}
+//     }
+//   })
+// }
