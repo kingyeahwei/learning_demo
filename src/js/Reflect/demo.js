@@ -177,3 +177,84 @@
 
 // const instance = Reflect.construct(Greeting, ['李四'])
 // console.log(instance instanceof Greeting);
+// function FancyThing() {}
+// const myObj = new FancyThing()
+// console.log(Object.getPrototypeOf(myObj) === FancyThing.prototype);
+// console.log(Reflect.getPrototypeOf(myObj) === FancyThing.prototype)
+
+// console.log(Object.getPrototypeOf(1))
+// Reflect.getPrototypeOf(1)
+
+// const myObj = {}
+// Object.setPrototypeOf(myObj, Array.prototype)
+// console.log(Reflect.setPrototypeOf(myObj, Array.prototype))
+// console.log(myObj.length);
+// console.log(Reflect.setPrototypeOf({}, null))
+// console.log(Reflect.setPrototypeOf(Object.freeze({}), null))
+// console.log(Object.setPrototypeOf(1, {}))
+// Reflect.setPrototypeOf(1, {})
+
+// Object.setPrototypeOf(null, {})
+// Reflect.setPrototypeOf(null, {})
+
+// const ages = [11, 13, 12, 54, 18, 96];
+// const youngest = Math.min.apply(Math, ages)
+// const oldest = Math.max.apply(Math, ages)
+// console.log(youngest);
+// console.log(Object.prototype.toString.call(youngest))
+// const youngest = Reflect.apply(Math.min, Math, ages)
+// const oldest = Reflect.apply(Math.max, Math, ages)
+// const type = Reflect.apply(Object.prototype.toString, youngest, [])
+// console.log(type);
+
+// function MyData() {}
+// Object.defineProperty(MyData, 'now', {value: () => Date.now()})
+// console.log(typeof MyData.now);
+
+// const p = new Proxy({}, {
+//   defineProperty(target, prop, descriptor) {
+//     console.log(descriptor);
+//     return Reflect.defineProperty(target, prop, descriptor)
+//   }
+// })
+
+// p.foo = 'bar'
+// console.log(p.foo);
+
+// var myObject = {};
+// Object.defineProperty(myObject, "hidden", {
+//   value: true,
+//   enumerable: false,
+// });
+
+// var theDescriptor = Object.getOwnPropertyDescriptor(myObject, 'hidden')
+// console.log(theDescriptor);
+// const theDescriptor = Reflect.getOwnPropertyDescriptor(myObject, 'hidden')
+// console.log(theDescriptor);
+
+// const myObject = {};
+// console.log(Object.isExtensible(myObject))
+// console.log(Reflect.isExtensible(myObject))
+
+// console.log(Object.isExtensible(1))
+// console.log(Reflect.isExtensible(1));
+
+// note Reflect.preventExtensions
+
+// var myObject = {};
+// console.log(Object.preventExtensions(myObject))
+// console.log(Reflect.preventExtensions(myObject))
+
+// console.log(Object.preventExtensions(1))
+// Reflect.preventExtensions(1)
+
+// var myObject = {
+//   foo: 1,
+//   bar: 2,
+//   [Symbol.for('baz')]: 3,
+//   [Symbol.for('bing')]: 4,
+// }
+
+// console.log(Object.getOwnPropertyNames(myObject))
+// console.log(Object.getOwnPropertySymbols(myObject))
+// console.log(Reflect.ownKeys(myObject))
