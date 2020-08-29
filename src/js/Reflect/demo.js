@@ -258,3 +258,17 @@
 // console.log(Object.getOwnPropertyNames(myObject))
 // console.log(Object.getOwnPropertySymbols(myObject))
 // console.log(Reflect.ownKeys(myObject))
+
+// const queuedObservers = new Set();
+// const observe = (fn) => queuedObservers.add(fn);
+// const observable = (obj) => new Proxy(obj, { set });
+
+// function set(target, key, value, receiver) {
+//   const result = Reflect.set(target, key, value, receiver);
+//   queuedObservers.forEach((observer) => observer());
+//   return result;
+// }
+// const proxy = observable({})
+// observe(() => console.log("111"))
+// observe(() => console.log("222"))
+// proxy.a = 'b'
