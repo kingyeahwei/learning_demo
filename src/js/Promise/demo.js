@@ -247,4 +247,195 @@
 //   console.log('carry on', error);
 // })
 
-// note Promise.prototype.finally()
+// note 5.Promise.prototype.finally()
+// promise.finally(() => {
+//   console.log();
+// })
+
+// promise.then(
+//   (result) => {
+//     return result;
+//   },
+//   (error) => {
+//     return error;
+//   }
+// );
+
+// Promise.prototype.finally = function (callback) {
+//   let P = this.constructor;
+//   return this.then(
+//     (value) => P.resolve(callback()).then(() => value),
+//     (reason) =>
+//       P.resolve(callback()).then(() => {
+//         throw reason;
+//       })
+//   );
+// };
+
+// const promises = [2, 3, 5, 7, 11, 13].map(function (id) {
+//   return getJSON('/post/' + id + '.json');
+// });
+
+// Promise.add(promises)
+//   .then(function (posts) {})
+//   .catch(function (reason) {});
+
+// const databasePromise = connectDatabase();
+// const booksPromise = databasePromise.then(findAllBooks);
+// const userPromise = databasePromise.then(getCurrentUser);
+// Promise.all([booksPromise, userPromise]).then(([books, user]) =>
+//   pickTopRecommentdations(books, user)
+// );
+
+// const p1 = new Promise((resolve, reject) => {
+//   resolve('hello');
+// })
+//   .then((result) => result)
+//   .catch((e) => e);
+
+// const p1 = new Promise((resolve, reject) => {
+//   resolve('hello');
+// }).then((result) => result);
+
+// const p2 = new Promise((resolve, reject) => {
+//   throw new Error('报错了');
+// })
+//   .then((result) => result)
+//   .catch((e) => e);
+
+// Promise.all([p1, p2])
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((e) => console.log(e));
+
+// const p1 = new Promise((resolve, reject) => {
+//   resolve('hello');
+// }).then((result) => result);
+
+// const p2 = new Promise((resolve, reject) => {
+//   throw new Error('报错了');
+// }).then((result) => result);
+
+// Promise.all([p1, p2])
+//   .then((result) => console.log(result))
+//   .catch((e) => console.log(e));
+
+// const p = Promise.race([
+//   fetch('/resource-that-may-take-a-while'),
+//   new Promise(function (resolve, reject) {
+//     setTimeout(() => {
+//       reject(new Error('request timeout'));
+//     }, 5000);
+//   }),
+// ]);
+
+// p.then(console.log).catch(console.error);
+
+// const promises = [fetch('/api-1'), fetch('/api-2'), fetch('/api-3')];
+
+// await Promise.allSettled(promises);
+// removeLoadingIndicator()
+
+// const resolved = Promise.resolve(42);
+// const rejected = Promise.reject(-1);
+// const allSettledPromise = Promise.allSettled([resolved, rejected]);
+// allSettledPromise.then(function (results) {
+//   console.log(results);
+// });
+
+// const promises = [fetch('index.html'), fetch('https://does-not-exist/')];
+// const results = await Promise.allSettled(promises);
+
+// const successfulPromises = results.filters((p) => p.status === 'fulfilled');
+// const errors = results.filters((p) => p.status === 'rejected').map((p) => p.reason);
+
+// const urls = [];
+// const requests = urls.map((x) => fetch(x));
+// try {
+//   await Promise.all(requests);
+//   console.log('所有请求都成功!');
+// } catch {
+//   console.log('至少一个请求失败,其他请求可能还没结束!');
+// }
+
+// const promises = [
+//   fetch('/endpoint-a').then(() => 'a'),
+//   fetch('/endpoint-b').then(() => 'b'),
+//   fetch('/endpoint-c').then(() => 'c'),
+// ];
+
+// try {
+//   const first = await Promise.any(promises);
+//   console.log(first);
+// } catch (error) {
+//   console.log(error);
+// }
+
+// new AggregateError() extends Array -> AggregateError
+
+// const err = new AggregateError();
+// err.push(new Error("first error"));
+// err.push(new Error("second error"));
+// throw err;
+
+// Promise.any(promises).then(
+//   (first) => {
+//     // Any of the promises was fulfilled
+//   },
+//   (error) => {
+//     // All of the promises were rejected
+//   }
+// );
+
+// var resolved = Promise.resolve(42);
+// var rejected = Promise.reject(-1);
+// var alsoRejected = Promise.reject(Infinity);
+
+// Promise.any([resolved, rejected, alsoRejected]).then(function (result) {
+//   console.log(result);
+// });
+
+// Promise.any([rejected, alsoRejected]).catch(function (results) {
+//   console.log(results);
+// });
+
+// let thenable = {
+//   then: function(resolve, reject) {
+//     resolve(42)
+//   }
+// }
+
+// let p1 = Promise.resolve(thenable)
+
+// const p = Promise.resolve('hello')
+// p.then(function(s) {
+//   console.log(s);
+// })
+
+// setTimeout(() => {
+//   console.log('three');
+// }, 0);
+
+// Promise.resolve().then(function () {
+//   console.log('two');
+// });
+
+// console.log('one');
+
+// const p = Promise.reject('出错了');
+// const p = new Promise((resolve, reject) => reject('出错了'));
+
+// p.then(null, function(s) {
+//   console.log(s);
+// })
+
+// const thenable = {
+//   then(resolve, reject) {
+//     reject('出错了');
+//   },
+// };
+
+// Promise.reject(thenable).catch(e => {
+//   console.log(e === thenable);
+// })
