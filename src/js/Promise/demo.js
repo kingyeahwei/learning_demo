@@ -439,3 +439,79 @@
 // Promise.reject(thenable).catch(e => {
 //   console.log(e === thenable);
 // })
+
+// function getFoo() {
+//   return new Promise(function (resolve, reject) {
+//     resolve('foo');
+//   });
+// }
+
+// const g = function* () {
+//   try {
+//     const foo = yield getFoo();
+//     console.log(foo);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+// function run(genertator) {
+//   const it = genertator();
+//   function go(result) {
+//     if (result.done) return result.value;
+//     return result.value.then(
+//       function (value) {
+//         return go(it.next(value));
+//       },
+//       function (error) {
+//         return go(it.throw(error));
+//       }
+//     );
+//   }
+
+//   go(it.next());
+// }
+
+// run(g);
+
+// const f = () => console.log('now');
+// Promise.resolve().then(f);
+// console.log('next');
+
+// const f = () => {
+//   console.log('now');
+// };
+// (async () => f())();
+// console.log('next');
+
+// (async () => f())().then().catch()
+
+// const f = () => console.log('now');
+// (() => new Promise((resolve) => resolve(f())))();
+// console.log('next');
+
+// const f = () => console.log('now');
+// Promise.try(f);
+// console.log('next');
+
+// function getUsername(userId) {
+//   return database.users.get({ id: userid }).then(function (user) {
+//     return user.name;
+//   });
+// }
+
+// database.users
+//   .get({ id: userId })
+//   .then(function () {})
+//   .catch(function () {});
+
+// try {
+//   database.users
+//     .get({ id: userId })
+//     .then(function () {})
+//     .catch(function () {});
+// } catch (e) {}
+
+// Promise.try(() => database.users.get({ id: userId }))
+//   .then(function () {})
+//   .catch(function () {});
