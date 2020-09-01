@@ -331,3 +331,108 @@
 // }
 
 // note set和map结构
+
+// var engines = new Set(['Gecko', 'Trident', 'Webkit', 'Webkit']);
+// for (var e of engines) {
+//   console.log(e);
+// }
+
+// var es6 = new Map();
+// es6.set('edition', 6);
+// es6.set('committee', 'TC39');
+// es6.set('standard', 'ECMA-262');
+// for (const [name, value] of es6) {
+//   console.log(name + ':' + value);
+// }
+// let map = new Map().set('a', 1).set('b', 2);
+// for (const pair of map) {
+//   console.log(pair);
+// }
+
+// for (const [key, value] of map) {
+//   console.log(key + ':' + value);
+// }
+
+// 有些数据结构是在现有的数据结构的基础上,计算生成的.比如es6的数组、Set、Map都部署了以下三个方法，调用后都返回遍历器对象
+// let arr = ['a', 'b', 'c'];
+// for (const pair of arr.entries()) {
+//   console.log(pair);
+// }
+
+// let str = 'hello';
+// for (const s of str) {
+//   console.log(s);
+// }
+
+// let paras = document.querySelectorAll('html');
+// for (const p of paras) {
+//   console.log(p);
+// }
+
+// function printArgs() {
+//   for (const x of arguments) {
+//     console.log(x);
+//   }
+// }
+
+// printArgs('a', 'b')
+
+// for (const x of 'a\uD83D\uDC0A') {
+//   console.log(x);
+// }
+
+// let arrayLike = { length: 2, 0: 'a', 1: 'b' };
+// for (let x of arrayLike) {
+//   console.log(x);
+// }
+
+// for (const x of Array.from(arrayLike)) {
+//   console.log(x);
+// }
+
+// let es6 = {
+//   edition: 6,
+//   committee: 'TC39',
+//   standard: 'ECMA-262'
+// }
+
+// for (const e in es6) {
+//   console.log(e);
+// }
+
+// for (const e of es6) {
+//   console.log(e);
+// }
+
+// for (const key of Object.keys(es6)) {
+//   console.log(key + ':' + es6[key]);
+// }
+
+// function* entries(obj) {
+//   for (const key of Object.keys(obj)) {
+//     yield [key, obj[key]]
+//   }
+// }
+
+// for (const [key, value] of entries(es6)) {
+//   console.log(key + '->' + value);
+// }
+// for (let index = 0; index < myArray.length; index++) {
+//   console.log(myArray[index]);
+// }
+// myArray.forEach(function(value) {
+//   console.log(value);
+// })
+// for (const index in myArray) {
+//   console.log(typeof index);
+// }
+// for (const value of myArray) {
+//   console.log(value);
+// }
+// for (const n of fibonnacci) {
+//   if (n > 1000) {
+//     break
+//   }
+//   console.log(n);
+// }
+
