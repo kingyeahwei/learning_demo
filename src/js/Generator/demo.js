@@ -9,7 +9,6 @@
 // console.log(hw.next());
 // console.log(hw.next());
 
-
 // function * foo(x, y) {}
 // function *foo(x, y) {}
 // function* foo(x, y) {}
@@ -121,12 +120,12 @@
 
 // let genObj = dataConsumer();
 // console.log(genObj.next())
-// console.log(genObj.next('a')); 
-// console.log(genObj.next('b')); 
+// console.log(genObj.next('a'));
+// console.log(genObj.next('b'));
 
 // function wrapper(generatorFunction) {
 //   return function (...args) {
-//     let generatorObject = generatorFunction(...args); 
+//     let generatorObject = generatorFunction(...args);
 //     generatorObject.next();
 //     return generatorObject;
 //   }
@@ -136,4 +135,291 @@
 //   return 'DONE';
 // })
 // console.log(wrapped().next('hello!'));
+
+// tag for...of 循环
+// function* foo() {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+//   yield 4;
+//   yield 5;
+//   return 6;
+// }
+
+// for (let v of foo()) {
+//   console.log(v);
+// }
+
+// function* fibonacci() {
+//   let [prev, curr] = [0, 1];
+//   for (;;) {
+//     yield curr;
+//     [prev, curr] = [curr, prev + curr];
+//   }
+// }
+
+// for (let n of fibonacci()) {
+//   if (n > 1000) {
+//     break;
+//   }
+//   console.log(n);
+// }
+
+// function* objectEntries(obj) {
+//   let propKeys = Reflect.ownKeys(obj);
+//   for (const propKey of propKeys) {
+//     yield [propKey, obj[propKey]];
+//   }
+// }
+
+// let jane = {
+//   first: 'jane',
+//   last: 'Don',
+//   [Symbol.for('jjj')]: 'xxxx'
+// }
+
+// for (const xx of objectEntries(jane)) {
+//   console.log(xx);
+// }
+// function* objectEntries() {
+//   let propKeys = Object.keys(this);
+//   for (let propKey of propKeys) {
+//     yield [propKey, this[propKey]]
+//   }
+// }
+
+// let jane = {first: 'Jane', last: 'Doe'};
+// jane[Symbol.iterator] = objectEntries;
+
+// for (const [key, value] of jane) {
+//   console.log(`${key}: ${value}`);
+// }
+
+// function* numbers() {
+//   yield 1;
+//   yield 2;
+//   return 3;
+//   yield 4;
+// }
+
+// console.log([...numbers()])
+// console.log(Array.from(numbers()));
+// let [x, y] = numbers()
+// console.log(x);
+// console.log(y);
+
+// for (const n of numbers()) {
+//   console.log(n);
+// }
+
+// var g = function* () {
+//   try {
+//     yield;
+//   } catch (e) {
+//     console.log('内部捕获:', e);
+//   }
+// };
+
+// var i = g();
+// i.next();
+// try {
+//   i.throw('a');
+//   i.throw('b');
+// } catch (e) {
+//   console.log('外部捕获:', e);
+// }
+
+// var g = function* () {
+//   try {
+//     yield;
+//   } catch (e) {
+//     console.log('---',e);
+//   }
+// }
+
+// var i = g();
+// i.next()
+// i.throw(new Error('出错了!'))
+
+// var g = function* () {
+//   while (true) {
+//     try {
+//       yield;
+//     } catch (e) {
+//       if (e != 'a') throw e;
+//       console.log('内部捕获', e);
+//     }
+//   }
+// };
+
+// var i = g();
+// i.next();
+// try {
+//   throw new Error('a');
+//   throw new Error('b');
+// } catch (e) {
+//   console.log('外部捕获:', e);
+// }
+
+// var g = function* () {
+//   while (true) {
+//     yield;
+//     console.log('内部捕获:', e);
+//   }
+// }
+
+// var i = g();
+// i.next();
+// try {
+//   i.throw('a');
+//   i.throw('b');
+// } catch (e) {
+//   console.log('外部捕获的错误', e);
+// }
+
+// var gen = function* gen() {
+//   yield console.log('hello');
+//   yield console.log('world');
+// }
+
+// var g = gen();
+// g.next()
+// g.throw();
+
+// function* gen() {
+//   try {
+//     yield 1;
+//   } catch (e) {
+//     console.log('内部捕获');
+//   }
+// }
+
+// var g = gen();
+// g.throw(1)
+
+// var gen = function* gen() {
+//   try {
+//     yield console.log('a');
+//   } catch (e) {
+
+//   }
+//   yield console.log('b');
+//   yield console.log('c');
+// }
+
+// var g = gen();
+// console.log(g.next())
+// console.log(g.throw())
+// console.log(g.next())
+
+// var gen = function* gen() {
+//   yield console.log('hello');
+//   yield console.log('world');
+// };
+
+// var g = gen();
+// g.next()
+
+// try {
+//   throw new Error()
+// } catch(e) {
+//   g.next();
+// }
+
+// function* foo() {
+//   var x = yield 3;
+//   var y = x.toUpperCase()
+//   yield y;
+// }
+
+// var it = foo();
+// console.log(it.next())
+
+// try {
+//   it.next(42)
+// } catch(error) {
+//   console.log(error);
+// }
+
+// function* g() {
+//   yield 1;
+//   console.log('throwing an exception');
+//   throw new Error('generator broke!');
+//   yield 2;
+//   yield 3;
+// }
+
+// function log(generator) {
+//   var v;
+//   console.log('starting generator');
+//   try {
+//     v = generator.next();
+//     console.log('第一次运行next方法', v);
+//   } catch (e) {
+//     console.log('捕获错误', v);
+//   }
+
+//   try {
+//     v = generator.next();
+//     console.log('第二次运行next方法', v);
+//   } catch (e) {
+//     console.log('捕获错误', v);
+//   }
+
+//   try {
+//     v = generator.next();
+//     console.log('第三次运行next方法', v);
+//   } catch (e) {
+//     console.log('捕获错误', v);
+//   }
+
+//   console.log('caller done');
+// }
+
+// log(g())
+
+// function* gen() {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+// }
+
+// var g = gen();
+
+// console.log(g.next())
+// console.log(g.return('foo'));
+// console.log(g.next());
+
+// function* gen() {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+// }
+
+// var g = gen()
+// console.log(g.next())
+// console.log(g.return());
+
+// function* numbers() {
+//   yield 1;
+//   try {
+//     yield 2;
+//     yield 3;
+//   } finally {
+//     yield 4;
+//     yield 5;
+//   }
+//   yield 6;
+// }
+
+// var g = numbers()
+
+// console.log(g.next())
+// console.log(g.next())
+// console.log(g.return(7))
+// console.log(g.next());
+// console.log(g.next());
+
+// tag next()、throw()、return()共同点
+
 
