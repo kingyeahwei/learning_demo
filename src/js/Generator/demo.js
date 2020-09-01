@@ -422,4 +422,14 @@
 
 // tag next()、throw()、return()共同点
 
+// const g = function* (x, y) {
+//   let result = yield x + y;
+//   return result;
+// }
+
+// const gen = g(1, 2);
+// console.log(gen.next())
+// console.log(gen.throw(new Error('出错了'))); 
+// console.log(gen.return(2));
+
 
