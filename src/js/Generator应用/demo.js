@@ -5,6 +5,8 @@
 //   console.log(data);
 // })
 
+const { readFile } = require("fs");
+
 // var readFile = require('fs-readfile-promise');
 // readFile(fileA)
 //   .then(function (data) {
@@ -222,3 +224,22 @@ function thunkify(fn) {
 // run(gen)
 
 // note thunk end
+
+
+// var co = require('co')
+// var fs = require('fs');
+// var readFileThunk = thunkify(fs.readFile)
+
+// var gen = function* () {
+//   var r1 = yield readFileThunk('src/a.txt')
+//   var r2 = yield readFileThunk('src/b.txt')
+//   console.log(r1.toString());
+//   console.log(r2.toString());
+// }
+
+// co(gen).then(function() {
+//   console.log('Generator 函数执行完成');
+// })
+
+
+
