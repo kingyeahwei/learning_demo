@@ -5,8 +5,6 @@
 //   console.log(data);
 // })
 
-const { readFile } = require("fs");
-
 // var readFile = require('fs-readfile-promise');
 // readFile(fileA)
 //   .then(function (data) {
@@ -127,32 +125,32 @@ const { readFile } = require("fs");
 
 // })
 
-function thunkify(fn) {
-  return function () {
-    var args = new Array(arguments.length);
-    var ctx = this;
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return function (done) {
-      var called;
-      args.push(function () {
-        if (called) return;
-        called = true;
-        console.log(arguments);
-        done.apply(null, arguments);
-      });
+// function thunkify(fn) {
+//   return function () {
+//     var args = new Array(arguments.length);
+//     var ctx = this;
+//     for (var i = 0; i < args.length; i++) {
+//       args[i] = arguments[i];
+//     }
+//     return function (done) {
+//       var called;
+//       args.push(function () {
+//         if (called) return;
+//         called = true;
+//         console.log(arguments);
+//         done.apply(null, arguments);
+//       });
 
-      try {
-        fn.apply(ctx, args);
-      } catch (e) {
-        done(e);
-      }
-    };
-  };
-}
+//       try {
+//         fn.apply(ctx, args);
+//       } catch (e) {
+//         done(e);
+//       }
+//     };
+//   };
+// }
 
-// function f(a, b, callback) {  
+// function f(a, b, callback) {
 //   var sum = a + b;
 //   callback(sum)
 //   callback(sum)
@@ -225,7 +223,6 @@ function thunkify(fn) {
 
 // note thunk end
 
-
 // var co = require('co')
 // var fs = require('fs');
 // var readFileThunk = thunkify(fs.readFile)
@@ -241,5 +238,170 @@ function thunkify(fn) {
 //   console.log('Generator 函数执行完成');
 // })
 
+// var fs = require('fs');
+// var readFile = function (fileName) {
+//   return new Promise(function (resolve, reject) {
+//     fs.readFile(fileName, function (error, data) {
+//       if (error) {
+//         reject(error);
+//       }
+//       resolve(data);
+//     });
+//   });
+// };
 
+// var gen = function* () {
+//   var f1 = yield readFile('src/a.txt');
+//   var f2 = yield readFile('src/b.txt');
+//   console.log(f1.toString());
+//   console.log(f2.toString());
+// };
 
+// var g = gen();
+// g.next().value.then(function (data) {
+//   g.next(data).value.then(function (data) {
+//     g.next(data);
+//   });
+// });
+
+// function run(gen) {
+//   var g = gen();
+
+//   function next(data) {
+//     var result = g.next(data);
+//     if (result.done) {
+//       return result.value;
+//     }
+
+//     result.value.then(function (data) {
+//       next(data);
+//     });
+//   }
+
+//   next();
+// }
+
+// run(gen)
+
+// function co(gen) {
+//   var ctx = this;
+//   return new Promise(function (resolve, reject) {
+
+//   });
+// }
+
+// function co(gen) {
+//   var ctx = this;
+//   return new Promise(function (resolve, rejct) {
+//     if (typeof gen === 'function') {
+//       gen = gen.call(ctx);
+//     }
+//     if (!gen || typeof gen.next !== 'function') {
+//       return resolve(gen);
+//     }
+//   });
+// }
+
+// function co(gen) {
+//   var ctx = this;
+
+//   return new Promise(function(resolve, reject) {
+//     if (typeof gen === 'function') {
+//       gen = gen.call(ctx)
+//     }
+//     if (!gen || gen.next !== 'function') {
+//       return resolve(gen)
+//     }
+
+//     onFulfilled()
+//     function onFulfilled(res) {
+//       var ret;
+//       try {
+//         ret = gen.next();
+//       } catch (e) {
+//         return reject(e)
+//       }
+//       next(ret)
+//     }
+
+//     function next(ret) {
+//       if (ret.done) {
+//         return resolve(ret.value)
+//       }
+//       var value = toPromise.call(ctx, ret.value)
+//       if (value && isPromise(value)) {
+//         return value.then(onFulfilled, onRejected);
+//       }
+
+//       return onRejected(
+//         new TypeError(
+//           'You may only yield a function, promise, generator, array, or object'
+//           + 'but the following object was passed:"'
+//           + String(ret.value)
+//           + '"'
+//         )
+//       )
+//     }
+
+//   })
+// }
+
+let co = require('co');
+// co(function* () {
+//   var res = yield [
+//     Promise.resolve(1),
+//     Promise.resolve(2)
+//   ];
+//   console.log(res);
+// }).catch(function(err) {
+//   console.log(err);
+// })
+
+// co(function* () {
+//   var res = yield {
+//     1: Promise.resolve(1),
+//     2: Promise.resolve(2),
+//   }
+//   console.log(res);
+// }).catch(function(err) {
+//   console.log(err);
+// })
+
+// co(function* () {
+//   var values = [n1, n2, n3];
+//   yield values.map(somethingAsync);
+// })
+
+// function* somethingAsync(x) {
+//   // do something async
+//   return y;
+// }
+
+// const co = require('co');
+// const fs = require('fs');
+// const { resolve } = require('path');
+// const stream = fs.createReadStream('./les_miserables.txt');
+// let valjeanCount = 0;
+// co(function* () {
+//   while (true) {
+//     const res = yield Promise.race([
+//       new Promise((reslove) => {
+//         stream.once('data', resolve);
+//       }),
+//       new Promise((resolve) => {
+//         stream.once('end', resolve);
+//       }),
+//       new Promise((reslove, reject) => {
+//         stream.once('error', reject);
+//       }),
+//     ]);
+//     if (!res) {
+//       break;
+//     }
+//     stream.removeListener('data');
+//     stream.removeListener('end');
+//     stream.removeListener('error');
+//     valjeanCount += (res.toString().match(/valjean/) || []).length;
+//   }
+//   console.log('count:' + valjeanCount);
+// });
