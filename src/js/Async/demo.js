@@ -1,6 +1,5 @@
 // const fs = require('fs');
 
-
 // const readFile = function (fileName) {
 //   return new Promise(function (resolve, reject) {
 //     fs.readFile(fileName, function (error, data) {
@@ -325,45 +324,190 @@
 
 // async function fn(args) {}
 
-function fn(args) {
-  return spawn(function* () {});
-}
+// function fn(args) {
+//   return spawn(function* () {});
+// }
 
-function spawn(genF) {
-  return new Promise(function (resolve, reject) {
-    const gen = genF();
-    function step(nextF) {
-      let next;
-      try {
-        next = nextF();
-      } catch (e) {
-        return reject(e);
-      }
-      if (next.done) {
-        return resolve(next.value);
-      }
-      Promise.resolve(next.value).then(
-        function (v) {
-          step(function () {
-            return gen.next(v);
-          });
-        },
-        function (e) {
-          step(function () {
-            return gen.throw(e);
-          });
-        }
-      );
-    }
+// function spawn(genF) {
+//   return new Promise(function (resolve, reject) {
+//     const gen = genF();
+//     function step(nextF) {
+//       let next;
+//       try {
+//         next = nextF();
+//       } catch (e) {
+//         return reject(e);
+//       }
+//       if (next.done) {
+//         return resolve(next.value);
+//       }
+//       Promise.resolve(next.value).then(
+//         function (v) {
+//           step(function () {
+//             return gen.next(v);
+//           });
+//         },
+//         function (e) {
+//           step(function () {
+//             return gen.throw(e);
+//           });
+//         }
+//       );
+//     }
 
-    step(function () {
-      return gen.next(undefined);
-    });
-  });
-}
+//     step(function () {
+//       return gen.next(undefined);
+//     });
+//   });
+// }
 
-spawn(function* () {
-  yield 1;
-  yield 2;
-  return 3;
-})
+// spawn(function* () {
+//   yield 1;
+//   yield 2;
+//   return 3;
+// })
+
+// function chainAnimationsPromise(elem, animations) {
+//   let ret = null;
+//   let p = Promise.resolve();
+//   for (let anim of animations) {
+//     p = p.then(function(val) {
+//       ret = val;
+//       return anim(elem)
+//     })
+//   }
+//   return p.catch(function(e) {
+//     // 错误处理
+//   }).then(function() {
+//     return ret;
+//   })
+// }
+
+// function chainAnimationsGenerator(elem, animations) {
+//   return spawn(function* () {
+//     let ret = null;
+//     try {
+//       for (let anim of animations) {
+//         ret = yield anim(elem);
+//       }
+//     } catch (e) {}
+//     return ret;
+//   });
+// }
+
+// async function chainAnimationsAsync(elem, animations) {
+//   let ret = null;
+//   try {
+//     for (let anim of animations) {
+//       ret = await anim(elem);
+//     }
+//   } catch (e) {}
+//   return ret;
+// }
+
+// function logInOrder(urls) {
+//   const textPromises = urls.map((url) => {
+//     return fetch(url).then((response) => response.text());
+//   });
+
+//   textPromises.reduce((chain, textPromise) => {
+//     return chain.then(() => textPromise).then((text) => console.log(text));
+//   }, Promise.resolve());
+// }
+
+// async function logInOrder(urls) {
+//   for (const url of urls) {
+//     const response = await fetch(url)
+//     console.log(await response.text());
+//   }
+// }
+
+// async function logInOrder(urls) {
+//   const textPromises = urls.map(async url => {
+//     const response = await fetch(url);
+//     return response.text()
+//   })
+
+//   for(const textPromise of textPromises ) {
+//     console.log(await textPromise);
+//   }
+// }
+
+// let output;
+// async function main() {
+//   const dynamic = await import(someMission);
+//   const data = await fetch(url);
+//   output = someProcess(dynamic.default, data);
+// }
+
+// main();
+// export { output };
+
+// let output;
+// (async function main() {
+//   const dynamic = await import(someMission);
+//   const data = await fetch(url);
+//   output = someProcess(dynamic.default, data);
+// })();
+
+// export { output };
+
+// import { output } from './awaiting.js';
+
+// function outputPlusValue(value) {
+//   return output + value;
+// }
+
+// console.log(outputPlusValue(100));
+
+// setTimeout(() => {
+//   console.log(outputPlusValue(100));
+// }, 1000);
+
+// let output;
+
+// export default (async function main() {
+//   const dynamic = await import(someMission);
+//   const data = await fetch(url);
+//   output = someProcess(dynamic.default, data);
+// })();
+
+// export { output };
+
+// import promise, { output } from './awaiting.js';
+// function outputPlusValue(value) {
+//   return output + value;
+// }
+
+// promise.then(() => {
+//   console.log(outputPlusValue(100));
+//   setTimeout(() => {
+//     console.log(outputPlusValue(100));
+//   }, 1000);
+// });
+
+// const dynamic = import(someMission);
+// const data = fetch(url);
+// export const output = someProcess((await dynamic).defalut, await data);
+
+// import { output } from './awaiting.js';
+// function outputPlusValue(value) {
+//   return output + value;
+// }
+
+// console.log(outputPlusValue(100));
+// setTimeout(() => {
+//   console.log(outputPlusValue(100));
+// }, 1000);
+
+// const strings = await import(`/i18n/${navigator.language}`);
+// const connection = await dbConnector()
+
+// let jQuery;
+// try {
+//   jQuery = await import('https://cdn-a.com/jQuery');
+// } catch {
+//   jQuery = await import('https://cdn-b.com/jQuery')
+// }
+
+
