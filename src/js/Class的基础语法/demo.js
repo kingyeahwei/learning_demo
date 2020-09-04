@@ -241,19 +241,19 @@
 //   console.log(x);
 // }
 
-class Logger {
-  constructor() {
-    this.printName = this.printName.bind(this);
-  }
+// class Logger {
+//   constructor() {
+//     this.printName = this.printName.bind(this);
+//   }
 
-  printName(name = 'there') {
-    this.print(`Hello ${name}`);
-  }
+//   printName(name = 'there') {
+//     this.print(`Hello ${name}`);
+//   }
 
-  print(text) {
-    console.log(text);
-  }
-}
+//   print(text) {
+//     console.log(text);
+//   }
+// }
 
 // const logger = new Logger()
 // const { printName } = logger;
@@ -329,7 +329,6 @@ class Logger {
 
 // }
 
-
 // console.log(Bar.classMethod())
 
 // class Foo {
@@ -346,3 +345,215 @@ class Logger {
 
 // console.log(Bar.classMethod())
 
+// class IncreasingCounter {
+//   constructor() {
+//     this._count = 0;
+//   }
+//   get value() {
+//     console.log('Getting the current value!');
+//     return this._count;
+//   }
+//   increment() {
+//     this._count++;
+//   }
+// }
+
+// class IncreasingCounter {
+//   _count = 0;
+//   get value() {
+//     console.log('Getting the current value!');
+//     return this._count;
+//   }
+
+//   increment() {
+//     this._count++;
+//   }
+// }
+
+// let inst = new IncreasingCounter()
+// console.log(Object.getPrototypeOf(inst)._count);
+// console.log(inst._count);
+// tag 静态属性
+// class Foo {}
+// Foo.prop = 1;
+// console.log(Foo.prop);
+
+// class MyClass {
+//   static myStaticProp = 42;
+//   constructor() {
+//     console.log(MyClass.myStaticProp);
+//   }
+// }
+
+// new MyClass()
+
+// class Widget {
+//   foo(baz) {
+//     this._bar(baz)
+//   }
+//   _bar(baz) {
+//     return this.snaf = baz;
+//   }
+// }
+
+// class Widget {
+//   foo(baz) {
+//     bar.call(this, baz);
+//   }
+// }
+
+// function bar(baz) {
+//   return this.snaf = baz;
+// }
+
+// const bar = Symbol('bar')
+// const snaf = Symbol('snaf');
+
+//  class MyClass {
+//   [snaf] = '123'
+//   foo(baz) {
+//     this[bar](baz)
+//   }
+//   [bar](baz) {
+//     return this[snaf] = baz
+//   }
+// }
+
+// const inst = new MyClass();
+
+// console.log(Reflect.ownKeys(MyClass.prototype))
+// console.log(Reflect.ownKeys(inst));
+
+// class IncreasingCounter {
+//   #count = 0;
+//   get value() {
+//     console.log('Getting the current vlaue!');
+//     return this.#count;
+//   }
+
+//   increment() {
+//     this.#count++;
+//   }
+// }
+
+// const counter = new IncreasingCounter();
+// console.log(counter.value)
+
+// class Point {
+//   #x;
+//   constructor(x = 0) {
+//     this.#x = +x;
+//   }
+
+//   get x() {
+//     return this.#x;
+//   }
+
+//   set x(value) {
+//     this.#x = +value;
+//   }
+// }
+
+// class Counter {
+//   #xValue = 0;
+//   constructor() {
+//     super()
+//   }
+
+//   get #x() {
+//     return this.#xValue;
+//   }
+
+//   set #x(value) {
+//     this.#xValue = value;
+//   }
+// }
+
+// class Foo {
+//   #privateValue = 42;
+//   static getPrivateValue(foo) {
+//     return foo.#privateValue;
+//   }
+// }
+
+// console.log(Foo.getPrivateValue(new Foo()))
+
+// class FakeMath {
+//   static PI = 22 / 7;
+//   static #totallyRandomNumber = 4;
+
+//   static #computeRandomNumber() {
+//     return FakeMath.#totallyRandomNumber;
+//   }
+
+//   static random() {
+//     console.log('I head you like random numbers...');
+//     return FakeMath.#computeRandomNumber();
+//   }
+// }
+
+// console.log(FakeMath.PI)
+// console.log(FakeMath.random());
+// FakeMath.#totallyRandomNumber;
+// FakeMath.#computeRandomNumber()
+
+// function Person(name) {
+//   if (new.target !== undefined) {
+//     this.name = name;
+//   } else {
+//     throw new Error('必须使用 new 命令生成实例');
+//   }
+// }
+
+// function Person(name) {
+//   if (new.target === Person) {
+//     this.name = name;
+//   } else {
+//     throw new Error('必须使用 new 命令生成实例')
+//   }
+// }
+
+// var person = new Person('张三');
+// var notAPerson = Person.call(person, '张三')
+
+// class Rectangle {
+//   constructor(length, width) {
+//     console.log(new.target === Rectangle);
+//     this.length = length;
+//     this.width = width
+//   }
+// }
+
+// var obj = new Rectangle(3, 4)
+
+// class Rectangle {
+//   constructor(length, width) {
+//     console.log(new.target === Rectangle);
+//   }
+// }
+
+// class Square extends Rectangle {
+//   constructor(length, width) {
+//     super(length, width)
+//   }
+// }
+
+// var obj = new Square(3, 5)
+
+// class Shape {
+//   constructor() {
+//     if (new.target ===Shape) {
+//       throw new Error('本类不能实例化')
+//     }
+//   }
+// }
+
+// class Rectangle extends Shape {
+//   constructor(length, width) {
+//     super(length, width)
+//   }
+// }
+
+// var x = new Shape()
+
+// var y = new Rectangle(2, 3);
