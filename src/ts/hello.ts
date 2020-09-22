@@ -7,6 +7,8 @@
 // let notANumber: number = NaN;
 // let infinityNumber: number = Infinity;
 
+import { log } from 'console';
+
 // let myName: string = 'Tom';
 // let myAge: number = 25;
 // let sentence: string = `Hello, my name is ${myName}. I'll be ${myAge} years old next month.`
@@ -615,3 +617,152 @@
 
 // const tom = getCacheData<Cat>('tom');
 // tom.run()
+
+// declare var jQuery: (selector: string) => any;
+
+// jQuery('#foo')
+
+// declare let jQuery: (selector: string) => any;
+
+// jQuery('#foo');
+// jQuery = function (selector) {
+//   return document.querySelector(selector);
+// }
+
+// declare const jQuery: (selector: string) => any;
+
+// jQuery('#foo');
+
+// jQuery = function (selector) {
+//   return document.querySelector(selector);
+// }
+
+// declare const jQuery = function (selector) {
+//   return document.querySelector(selector);
+// };
+
+// declare function jQuery(selector: string): any;
+// declare function jQuery(domReadyCallback: () => any): any;
+// jQuery('#foo');
+
+// jQuery(function() {
+//   alert('Dom Ready!')
+// })
+
+// declare class Animal {
+//   name: string;
+//   constructor(name: string);
+//   sayHi(): string;
+// }
+
+// let cat = new Animal('Tom');
+
+// declare class Animal {
+//   name: string;
+//   constructor(name: string);
+//   sayHi() {
+
+//   }
+// }
+
+// declare enum Directions {
+//   Up,
+//   Down,
+//   Left,
+//   Right
+// }
+
+// var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right]
+
+// declare namespace jQuery {
+//   function ajax(url: string, settings?: any): void
+// }
+
+// jQuery.ajax('/api/get_something');
+
+// declare namespace jQuery {
+//   function ajax(url: string, settings?: any): void;
+//   const version: number;
+//   class Event {
+//     blur(eventType: EventType): void;
+//   }
+//   enum EventType {
+//     CustomClick,
+//   }
+// }
+
+// jQuery.ajax('/api/get_something');
+// console.log(jQuery.version);
+// const e = new jQuery.Event();
+// e.blur(jQuery.EventType.CustomClick);
+
+// declare namespace jQuery {
+//   function ajax(url: string, settings?: any): void;
+//   namespace fn {
+//     function extend(object: any): void;
+//   }
+// }
+
+// jQuery.ajax('/api/get_somethings');
+// jQuery.fn.extend({
+//   check: function () {
+//     return this.each(function () {
+//       this.checked = true;
+//     });
+//   },
+// });
+
+// declare namespace jQuery.fn {
+//   function extend(object: any): void;
+// }
+
+// jQuery.fn.extend({
+//   check: function () {
+//     return this.each(function () {
+//       this.checked = true;
+//     });
+//   },
+// });
+
+// interface AjaxSettings {
+//   method?: 'GET' | 'POST';
+//   data?: any;
+// }
+
+// declare namespace jQuery {
+//   function ajax(url: string, settings?: AjaxSettings): void;
+// }
+
+// let settings: AjaxSettings = {
+//   method: 'POST',
+//   data: {
+//     name: 'foo',
+//   },
+// };
+
+// jQuery.ajax('/api/post_something', settings)
+
+// declare namespace jQuery {
+//   interface AjaxSettings {
+//     method?: 'GET' | 'POST';
+//     data?: any;
+//   }
+//   function ajax(url: string, settings?: AjaxSettings): void;
+// }
+
+// let settings: jQuery.AjaxSettings = {
+//   method: 'POST',
+//   data: {
+//     name: 'foo',
+//   },
+// };
+
+// jQuery.ajax('/api/post_something', settings)
+
+// declare function jQuery(selector: string): any;
+// declare namespace jQuery {
+//   function ajax(url: string, settings?: any): void;
+// }
+
+// jQuery('#foo');
+// jQuery.ajax('/api/get_something')
