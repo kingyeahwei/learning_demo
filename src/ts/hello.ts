@@ -499,19 +499,119 @@
 //   run(): void;
 // }
 
-interface Animal {
-  name: string;
-}
+// interface Animal {
+//   name: string;
+// }
 
-interface Cat {
-  name: string;
-  run(): void;
-}
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
 
-function testAnimal(animal: Animal) {
-  return animal as Cat;
-}
+// function testAnimal(animal: Animal) {
+//   return animal as Cat;
+// }
 
-function testCat(cat: Cat) {
-  return cat as Animal;
-}
+// function testCat(cat: Cat) {
+//   return cat as Animal;
+// }
+
+// interface Cat {
+//   run(): void;
+// }
+
+// interface Fish {
+//   swim(): void;
+// }
+
+// function testCat(cat: Cat) {
+//   return (cat as any as Fish);
+// }
+
+// function toBoolean(something: any): boolean {
+//   return something as boolean;
+// }
+
+// toBoolean(1);
+
+// function toBoolean(something: any): boolean {
+//   return Boolean(something);
+// }
+
+// toBoolean(1);
+
+// function getCacheData(key: string): any {
+//   return (window as any).cache[key];
+// }
+
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+
+// const tom = getCacheData('tom') as Cat;
+// tom.run()
+
+// function getCacheData(key: string): any {
+//   return (window as any).cache[key]
+// }
+
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+
+// const tom: Cat = getCacheData('tom');
+// tom.run();
+
+// interface Animal {
+//   name: string;
+// }
+
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+
+// const animal: Animal = {
+//   name: 'tom'
+// }
+
+// let tom  = animal as Cat;
+
+// interface Animal {
+//   name: string;
+// }
+
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+
+// const animal: Animal = {
+//   name: 'tom',
+// }
+
+// let tom: Cat = animal
+
+// animal 断言为Cat, 只需要好满足Animal兼容Cat或Cat兼容Animal即可
+// animal 赋值给tom, 需要满足Cat 兼容Animal才行;
+
+// const tom = getCacheData('tom') as CanvasText;
+
+// const tom: Cat = getCacheData('tom')
+
+// 知道了他们的区别,就知道了类型声明是比类型断言更加的严格的.
+// 所以为了增加代码的质量,我们最好优先使用类型声明,这比类型断言的as语法更加优雅
+
+// function getCacheData<T>(key: string): T {
+//   return (window as any).cache[key];
+// }
+
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+
+// const tom = getCacheData<Cat>('tom');
+// tom.run()
