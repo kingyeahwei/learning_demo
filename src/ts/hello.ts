@@ -766,3 +766,37 @@ import { log } from 'console';
 
 // jQuery('#foo');
 // jQuery.ajax('/api/get_something')
+
+// import { name, getName, Animal, Directions, Options } from 'foo';
+// console.log(name);
+// let myName = getName();
+// let cat = new Animal('Tom');
+// let directions = [
+//   Directions.Up,
+//   Directions.Down,
+//   Directions.Left,
+//   Directions.Right,
+// ];
+// let options: Options = {
+//   data: { name: 'foo' },
+// };
+
+// import {foo} from 'foo';
+// console.log(foo.name);
+// foo.bar.baz()
+
+// import foo from 'foo'
+// foo();
+
+// module.exports = foo;
+// exports.bar = bar;
+
+// const foo = require('foo')
+// const bar = require('foo').bar;
+
+// import * as foo from 'foo';
+// import { bar } from 'foo'
+
+// import foo = require('foo')
+// import bar = foo.bar;
+
