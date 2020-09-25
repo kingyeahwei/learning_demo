@@ -70,3 +70,62 @@ import { Directions } from './../../src/ts/hello.d';
 //   Left,
 //   Right,
 // }
+
+// export as namespace foo;
+// export  = foo;
+// declare function foo(): string;
+// declare namespace foo {
+//   const bar: number;
+// }
+
+// export as namespace foo;
+// export default foo;
+
+// declare function foo(): string;
+
+// declare namespace foo {
+//   const bar: number;
+// }
+
+// declare namespace JQuery {
+//   interface CustomOptions {
+//     bar: string;
+//   }
+// }
+
+// interface JQueryStatic {
+//   foo(options: JQuery.CustomOptions): string;
+// }
+
+// declare global {
+//   interface String {
+//     prependHello (): string;
+//   }
+// }
+
+// export {}
+
+// import * as moment from 'moment';
+
+// declare module 'moment' {
+//   export function foo(): moment.CalendarKey;
+// }
+
+// declare module 'foo' {
+//   export interface Foo {
+//     foo: string;
+//   }
+// }
+
+// declare module 'bar' {
+//   export function bar(): string
+// }
+
+// import * as moment from 'moment';
+
+// declare module 'moment' {
+//   export function foo(): moment.CalendarKey;
+// }
+
+/// <reference types="node">
+// export function foo(p: NodeJS.Process): string;
